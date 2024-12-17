@@ -7,9 +7,9 @@ test("parse simple instruction", () => {
   const result = parse("mov eax,10", true);
   expect(result.errors).toEqual([]);
   expect(result.instr).toEqual({
-    name: "mov",
+    name: "MOV",
     operands: [
-      { kind: "Register", name: "eax" },
+      { kind: "Register", name: "EAX" },
       { kind: "Immediate", value: 10 },
     ],
   });
@@ -19,14 +19,14 @@ test("parse complex instruction", () => {
   const result = parse("mov wordptr [esi+eax*4+100h],1234h", true);
   expect(result.errors).toEqual([]);
   expect(result.instr).toEqual({
-    name: "mov",
+    name: "MOV",
     operands: [
       {
         kind: "EffectiveAddress",
         address: {
-          base: "esi",
+          base: "ESI",
           displacement: 256,
-          index: { register: "eax", scale: 4 },
+          index: { register: "EAX", scale: 4 },
           size: X86Size.S_16,
         },
       },
